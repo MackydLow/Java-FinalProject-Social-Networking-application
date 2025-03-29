@@ -12,6 +12,7 @@ public class Friend {
 	private String workplace;
 	private Friend next;
 	private FriendList friendList;
+	private post friendPost;
 	
 	/** 
 	 * Constructor method to initialise all of the fields and objects to a value
@@ -25,6 +26,7 @@ public class Friend {
 		workplace = "";
 		next = null;
 		friendList = null;
+		friendPost = new post();
 	}
 	
 	/**
@@ -144,6 +146,37 @@ public class Friend {
 	public String toString()
 	{
 		return name + "," + ID + "," + hometown + "," + workplace;
+	}
+	
+	
+	/**
+	 * a method to send data to the post class and create a post for the added friend
+	 * 
+	 * @param name name of the friend
+	 */
+	public void createFriendPost(String name)
+	{
+		
+		friendPost.makePost(name, friendPost.friendMakePost());
+	}
+	
+	/**
+	 * to display the posts of your friends
+	 */
+	public void getFriendPost()
+	{
+		friendPost.display();
+	}
+	
+	/**
+	 * to sent data to the post class to like a post made by one of your friends
+	 * 
+	 * @param name name of the friend
+	 * @param id of the post you are liking
+	 */
+	public void likeFriendPost(String name, int id)
+	{
+		friendPost.addLike(id, name);
 	}
 	
 }
