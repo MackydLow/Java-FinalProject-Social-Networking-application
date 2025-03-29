@@ -23,6 +23,7 @@ public class Main {
 		while (true)
 		{
 			// displaying the choices to the user
+			System.out.println("");
 			System.out.println("Social Media Menu");
 			System.out.println("1. Add Friend");
 			System.out.println("2. Remove Friend");
@@ -32,7 +33,9 @@ public class Main {
 			System.out.println("6. Load Friends");
 			System.out.println("7. View Mutual Friends");
 			System.out.println("8. Add Mutual Friend");
-			System.out.println("9. Exit Page");
+			System.out.println("9. Display Friends Posts");
+			System.out.println("10. Like Friends Posts");
+			System.out.println("11. Exit Page");
 			System.out.println("Choose an option:");
 			// receiving the users choice
 			int menuChoice = s.nextInt();
@@ -142,8 +145,22 @@ public class Main {
 				friendList.addMutualFriend(friendID, mutualFriendName, mutualFriendID, mutualFriendHometown, mutualFriendWorkplace);
 				break;
 			case 9:
+				//call method to display friend post
+				friendList.DisplayFriendPosts();
+				break;
+			case 10:
+				//get friend who's post you want to like
+				System.out.println("Enter friends who's post you want to like ");
+				String friendForLike = s.nextLine();
+				//get ID of post you want to like
+				System.out.println("Enter id of post for that friend");
+				int postID = s.nextInt();
+				//call method to like post
+				friendList.likeFriendPosts(friendForLike, postID);
+				break;
+			case 11:
 				// displaying a message
-				System.out.println("Exiting Page.");
+				System.out.println("Exiting Page...");
 				return;
 			default:
 				// displaying an error message
