@@ -1,9 +1,10 @@
-import java.io.BufferedWriter;
+mport java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.Random;
 /**
  * This class is used for the method that will allow the user to do thing such as adding
  * friends, removing friends, displaying friends, filtering friends, saving and loading 
@@ -23,6 +24,7 @@ public class FriendList {
 	{
 		// initialising the head of the linked list
 		head = null;
+		
 	}
 	
 	/**
@@ -63,9 +65,16 @@ public class FriendList {
 		}
 		else
 		{
+			//check if he id enters equals the one stores as the head
+			if (head.getID().equals(addID))
+			{
+				// displaying a message if the friend already exists in the linked list
+				System.out.println("Friend with this ID already exists");
+				return;
+			}
+			
 			// creating an object of the Friend class and setting it to the head of the linked list
 			Friend current = head;
-			
 			// creating a while loop to loop for each friend in the linked list class
 			while (current.getNext() != null)
 			{
@@ -83,6 +92,81 @@ public class FriendList {
 		}
 		// displaying a method to the user if the friend was added to the linked list
 		System.out.println(newFriend.getName() + " added successfully!");
+		
+		//create random instance
+		Random rand = new Random();
+		
+		//set random number for amount of posts by friend
+		int numbOfPosts = rand.nextInt(5);
+		
+		//cycle for amount of posts and create friends posts
+		for(int p = 0; p < numbOfPosts; p++)
+		{
+			//create posts for your added friend
+			newFriend.createFriendPost(addName);
+		}
+		
+	}
+	
+	/**
+	 * a method to cycle through the linked list and display your friends posts
+	 */
+	public void DisplayFriendPosts()
+	{
+		//if head is null you have no friends
+		if (head == null)
+		{
+		
+			System.out.println("Sorry, you have no friends.");
+			return;
+		}
+			Friend current = head;
+				
+			//cycle through linked list and display posts of friends
+			while (current != null)
+			{
+				//display friends posts
+				current.getFriendPost();
+					
+				//get next friend from linked list
+				current = current.getNext();
+			}
+	}
+	
+	/**
+	 * to cycle through the linked list and check if the name and id match a post by your friend to then like it 
+	 * 
+	 * @param name name of friend
+	 * @param id of the post you want to like
+	 */
+	public void likeFriendPosts(String name, int id)
+	{
+		//check if user has friends
+		if (head == null)
+		{
+		
+			System.out.println("Sorry, you have no friends.");
+			return;
+		}
+			Friend current = head;
+				
+			//cycle through linked list 
+			while (current != null)
+			{
+				//check friend with friend inputed by user
+				if (current.getName().equals(name))
+				{
+					//if they match send data to friend class which will send to post class and like the post
+					current.likeFriendPost(name, id);
+					return;
+				}
+					
+				//get next friend if doesn't match
+				current = current.getNext();
+			}
+			
+		//if none match wrong input
+		System.out.println("Friend does not exist");
 	}
 	
 	/**
