@@ -290,13 +290,6 @@ public class FriendList {
 		// creating a object of the Friend class and setting it to the head
 		Friend current = head;
 		
-		//check if your friend has any friends
-		if (current == null)
-		{
-			//display message
-			System.out.println("Your friend has no friends");
-		}
-		
 		// creating a while loop to loop through every friend in the linked list
 		while (current != null)
 		{
