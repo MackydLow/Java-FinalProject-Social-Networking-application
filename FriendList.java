@@ -296,6 +296,11 @@ public class FriendList {
 			// creating an if statement to find the friend that has been entered by the user
 			if (current.getID().equals(friendID))
 			{
+				if (current.getFriendList() == null)
+				{
+					System.out.println("You friend has no friends");
+					return;
+				}
 				// displaying the friends friend list
 				System.out.println(current.getName() + "'s friends:");
 				current.getFriendList().displayFriends();
